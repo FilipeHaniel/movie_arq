@@ -1,4 +1,9 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
+import 'package:get_it/get_it.dart';
+import 'package:movie_arq/app/modules/event_handler.dart';
+import 'package:movie_arq/app/modules/home/contract/home_page_contract.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -7,7 +12,28 @@ class HomePage extends StatefulWidget {
   State<HomePage> createState() => _HomePageState();
 }
 
-class _HomePageState extends State<HomePage> {
+class _HomePageState extends State<HomePage> with HomePageContract {
+  @override
+  void error() {}
+
+  @override
+  void initial() {
+    log('App iniciado');
+  }
+
+  @override
+  void loading() {}
+
+  @override
+  void success() {}
+
+  @override
+  void initState() {
+    GetIt.I<EventHandler>().setHomePage(this);
+
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
